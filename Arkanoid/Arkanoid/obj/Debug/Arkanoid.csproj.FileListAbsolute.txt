@@ -1,0 +1,7 @@
+D:\DAM_1erCurso\Programacion\Arkanoid\Arkanoid\obj\Debug\Arkanoid.csprojResolveAssemblyReference.cache
+D:\DAM_1erCurso\Programacion\Arkanoid\Arkanoid\obj\Debug\Arkanoid.csproj.CoreCompileInputs.cache
+D:\DAM_1erCurso\Programacion\Arkanoid\Arkanoid\bin\Debug\Arkanoid.exe.config
+D:\DAM_1erCurso\Programacion\Arkanoid\Arkanoid\bin\Debug\Arkanoid.exe
+D:\DAM_1erCurso\Programacion\Arkanoid\Arkanoid\bin\Debug\Arkanoid.pdb
+D:\DAM_1erCurso\Programacion\Arkanoid\Arkanoid\obj\Debug\Arkanoid.exe
+D:\DAM_1erCurso\Programacion\Arkanoid\Arkanoid\obj\Debug\Arkanoid.pdb

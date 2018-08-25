@@ -90,7 +90,7 @@ namespace Arkanoid
                     bricks[i].color = ConsoleColor.Yellow;
                     bricks[i].score = 50;
                 }
-                else if (i % 2 == 0 && (i/10) % 2 == 0 || i % 2 == 1 && (i/10 % 2 == 1))
+                else if (i % 2 == 0 && (i/10 % 2 == 0) || i % 2 == 1 && (i/10 % 2 == 1))
                 {
                     bricks[i].numberOfHits = 1;
                     bricks[i].color = ConsoleColor.Blue;
@@ -231,13 +231,13 @@ namespace Arkanoid
                     }
                     // Left and right border
                     if ((gameBall.x == bricks[i].x - 1 && gameBall.xDirection > 0 || 
-                        gameBall.x == bricks[i].x + 4 && gameBall.xDirection <0) && gameBall.y == bricks[i].y)
+                        gameBall.x == bricks[i].x + 4 && gameBall.xDirection < 0) && gameBall.y == bricks[i].y)
                     {
                         bricks[i].numberOfHits--;
                         gameBall.xDirection = (sbyte)-gameBall.xDirection;
                         gameBall.xAngle = (sbyte)-gameBall.xAngle;
                     }
-                    // Check if brick must be destroyed, thn destroy the brick
+                    // Check if brick must be destroyed, then destroy the brick
                     if (bricks[i].numberOfHits == 0)
                     {
                         bricks[i].destroyed = true;
@@ -354,7 +354,7 @@ namespace Arkanoid
             int lives = 3;
 
           
-           WelcomeScreen();
+            WelcomeScreen();
                   
             PrintBorder();
             PrintTexts();
@@ -424,194 +424,6 @@ namespace Arkanoid
 
             // Place the cursor at the end of the console
             Console.SetCursorPosition(0, 23);
-  
-            /*
-            Declare variables here
-
-            Variables to store ball's coordinates 
-            int ballX = 20, ballY = 22;
-
-            Variables to store ball direction
-            int ballYDirection = -1, ballXDirection = 0, 
-            ballXAngle = 0;
-            bool moveBall = true;
-
-            Variables to store the current position of the main character
-            int characterX = 18, characterY = 23;
-            ConsoleKeyInfo key;
-
-            Bricks
-            brick[] bricks = new brick[10];
-
-            Exit of game variable
-            bool exitGame = false;
-
-            Create bricks
-            for (int i = 0; i < bricks.Length; i++)
-            {
-                bricks[i].x = (byte)(i * 4);
-                bricks[i].y = 2;
-                bricks[i].destroyed = false;
-                if (i % 2 == 0)
-                {
-                    bricks[i].numberOfHits = 1;
-                    bricks[i].color = ConsoleColor.Blue;
-                    bricks[i].score = 20;
-                }
-                else if (i == 1 || i == bricks.Length - 2)
-                {
-                    bricks[i].numberOfHits = 1;
-                    bricks[i].color = ConsoleColor.Blue;
-                    bricks[i].score = 20;
-                }
-                else
-                {
-                    bricks[i].numberOfHits = 1;
-                    bricks[i].color = ConsoleColor.Red;
-                    bricks[i].score = 10;
-                }
-            }
-
-            Draw bricks
-            for (int i= 0; i < bricks.Length; i++)
-            {
-                Console.SetCursorPosition(bricks[i].x, bricks[i].y);
-                Console.BackgroundColor = bricks[i].color;
-                Console.Write("    ");
-            }
-        
-
-            Game loop
-            while (!exitGame)
-            {
-                moveBall = !moveBall;
-                1. Draw movable elements (character and ball)
-     
-                Print a random ball in the left half of the screen
-                Console.SetCursorPosition(ballX, ballY);
-                Console.Write("o");
-
-                Print main character
-                Console.SetCursorPosition(characterX, characterY);
-                Console.BackgroundColor = ConsoleColor.White;
-                Console.Write("     ");
-                Console.ResetColor();
-
-                5 Pause
-
-                System.Threading.Thread.Sleep(50);
-
-                2. Read input and calculate player's new position
-                TO DO
-                Console.SetCursorPosition(0, 24);
-                if (Console.KeyAvailable)
-                {
-                    do
-                    {
-                        key = Console.ReadKey(false);
-                    }
-                    while (Console.KeyAvailable);
-
-                    Console.SetCursorPosition(characterX, characterY);
-                    Console.ResetColor();
-                    Console.Write("     ");
-
-                    if (key.Key == ConsoleKey.RightArrow && characterX + BAR_WIDTH < 40)
-                    {
-                        characterX++;
-                    }
-                    if (key.Key == ConsoleKey.LeftArrow && characterX > 0)
-                    {
-                        characterX--;
-                    }
-                    if (key.Key == ConsoleKey.Escape)
-                    {
-                        exitGame = true;
-                    }
-                }
-               
-
-                3. Move enemies and other objects
-                TO DO
-
-                Move the ball
-                if (moveBall)
-                {
-                    Console.ResetColor();
-                    Console.SetCursorPosition(ballX, ballY);
-                    Console.Write(" ");
-
-                    if (ballXDirection < 0 && ballXAngle == -2 && ballX < 2)
-                    {
-                        ballX -= 1;
-                    }
-                    else if (ballXDirection > 0 && ballXAngle == 2 && ballX > 37)
-                    {
-                        ballX += 1;
-                    }
-                    else
-                    {
-                        ballX += ballXAngle;
-                    }
-                    ballY += ballYDirection;
-                }
-                        
-                4. Check collisions and update game state
-                TO DO 
-                Collision between the ball and the bar
-
-                if (moveBall)
-                {
-                    if (ballY == 22 && ballX >= characterX && ballX <= characterX + BAR_WIDTH)
-                    {
-                        ballYDirection = -ballYDirection;
-
-                        switch (ballX - characterX)
-                        {
-                            case 0:
-                                ballXDirection = -1;
-                                ballXAngle = -2;
-                                break;
-                            case 1:
-                                ballXDirection = -1;
-                                ballXAngle = -1;
-                                break;
-                            case 2:
-                                ballXDirection = 0;
-                                ballXAngle = 0;
-                                break;
-                            case 3:
-                                ballXDirection = 1;
-                                ballXAngle = 1;
-                                break;
-                            case 4:
-                                ballXDirection = 1;
-                                ballXAngle = 2;
-                                break;
-                        }
-                    }
-
-                    Collision between the ball and left/right bounds
-                    if (ballX == 0 || ballX == 39)
-                    {
-                        ballXDirection = -ballXDirection;
-                        ballXAngle = -ballXAngle;
-                    }
-
-                    Collision between the ball and the upper bound
-                    if (ballY == 0)
-                    {
-                        ballYDirection = -ballYDirection;
-                    }
-                }
-  
-            }
-            Place the cursor at the end of the console
-            Console.SetCursorPosition(0, 24);
-            Console.ReadLine();
-
-            */
-
         }
     }
 }
